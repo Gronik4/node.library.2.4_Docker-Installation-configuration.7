@@ -1,0 +1,110 @@
+Загрузите образ busybox последней версии
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker pull busybox:latest
+latest: Pulling from library/busybox
+97e70d161e81: Pull complete
+Digest: sha256:37f7b378a29ceb4c551b1b5582e27747b855bbfaa73fa11914fe0df028dc581f
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+
+Запустите новый контейнер busybox с командой ping сайта netology.ru, и количеством пингов 7, поименуйте контейнер pinger
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run --name pinger busybox ping -c 7 netology.ru
+PING netology.ru (51.250.51.8): 56 data bytes
+64 bytes from 51.250.51.8: seq=0 ttl=63 time=16.614 ms
+64 bytes from 51.250.51.8: seq=1 ttl=63 time=24.888 ms
+64 bytes from 51.250.51.8: seq=2 ttl=63 time=17.186 ms
+64 bytes from 51.250.51.8: seq=3 ttl=63 time=13.346 ms
+64 bytes from 51.250.51.8: seq=4 ttl=63 time=16.577 ms
+64 bytes from 51.250.51.8: seq=5 ttl=63 time=14.800 ms
+64 bytes from 51.250.51.8: seq=6 ttl=63 time=36.866 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 13.346/20.039/36.866 ms
+
+Выведите на список всех контейнеров - запущенных и остановленных
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+f79f8f259808   busybox   "ping -c 7 netology.…"   3 minutes ago   Exited (0) 3 minutes ago             pinger
+
+Выведите на экран логи контейнера с именем pinger
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>     docker logs pinger
+PING netology.ru (51.250.51.8): 56 data bytes
+64 bytes from 51.250.51.8: seq=0 ttl=63 time=16.614 ms
+64 bytes from 51.250.51.8: seq=1 ttl=63 time=24.888 ms
+64 bytes from 51.250.51.8: seq=2 ttl=63 time=17.186 ms
+64 bytes from 51.250.51.8: seq=3 ttl=63 time=13.346 ms
+64 bytes from 51.250.51.8: seq=4 ttl=63 time=16.577 ms
+64 bytes from 51.250.51.8: seq=5 ttl=63 time=14.800 ms
+64 bytes from 51.250.51.8: seq=6 ttl=63 time=36.866 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 13.346/20.039/36.866 ms
+
+апустите второй раз контейнера с именем pinger
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker stop pinger
+pinger
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker start pinger
+pinger
+
+Выведите на список всех контейнеров - запущенных и остановленных
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS     NAMES
+f79f8f259808   busybox   "ping -c 7 netology.…"   19 minutes ago   Exited (0) 3 minutes ago             pinger
+
+Выведите на экран логи контейнера с именем pinger
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker logs pinger
+PING netology.ru (51.250.51.8): 56 data bytes
+64 bytes from 51.250.51.8: seq=0 ttl=63 time=16.614 ms
+64 bytes from 51.250.51.8: seq=1 ttl=63 time=24.888 ms
+64 bytes from 51.250.51.8: seq=2 ttl=63 time=17.186 ms
+64 bytes from 51.250.51.8: seq=3 ttl=63 time=13.346 ms
+64 bytes from 51.250.51.8: seq=4 ttl=63 time=16.577 ms
+64 bytes from 51.250.51.8: seq=5 ttl=63 time=14.800 ms
+64 bytes from 51.250.51.8: seq=6 ttl=63 time=36.866 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 13.346/20.039/36.866 ms
+PING netology.ru (51.250.51.8): 56 data bytes
+64 bytes from 51.250.51.8: seq=0 ttl=63 time=14.272 ms
+64 bytes from 51.250.51.8: seq=1 ttl=63 time=13.330 ms
+64 bytes from 51.250.51.8: seq=2 ttl=63 time=16.433 ms
+64 bytes from 51.250.51.8: seq=3 ttl=63 time=13.646 ms
+64 bytes from 51.250.51.8: seq=4 ttl=63 time=13.292 ms
+64 bytes from 51.250.51.8: seq=5 ttl=63 time=15.476 ms
+64 bytes from 51.250.51.8: seq=6 ttl=63 time=14.047 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 13.292/14.356/16.433 ms
+
+Определите по логам общее количество запусков команды ping и какое общее количество отправленых запросов
+Спецмальную команду для этого не смог запустить. Нагуглил такое: "docker logs pinger | grep "ping" | wc -l" - НО!!
+  Это выдает ошибку: "grep : Имя "grep" не распознано как имя командлета, функции, файла сценария или выполняемой программы. Проверьте правильность написания имени,
+  а также наличие и правильность пути"
+  Если чисто по логам ручками посчитать - запусков команды ping - 2, запросов 7.
+
+Удалите контейнер с именем pinger
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker rm pinger
+pinger
+
+Удалите образ busybox
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker images -a
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    dd01f97f2521   3 months ago   20.4kB
+busybox       latest    37f7b378a29c   7 months ago   6.55MB
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker rmi dd01f97f2521
+Untagged: hello-world:latest
+Deleted: sha256:dd01f97f252193ae3210da231b1dca0cffab4aadb3566692d6730bf93f123a48
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker images -a       
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+busybox      latest    37f7b378a29c   7 months ago   6.55MB
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker rmi 37f7b378a29c
+Untagged: busybox:latest
+Deleted: sha256:37f7b378a29ceb4c551b1b5582e27747b855bbfaa73fa11914fe0df028dc581f
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker images -a       
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
