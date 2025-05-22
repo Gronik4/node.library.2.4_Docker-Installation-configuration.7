@@ -1,0 +1,39 @@
+Загрузите образ node версии 15.14
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker pull node:15.14
+15.14: Pulling from library/node
+787f5e2f1047: Pull complete
+989c5d2d2313: Pull complete
+bd821d20ef8c: Pull complete
+4b57d41e8391: Pull complete
+7b6173a10eb8: Pull complete
+dc05be471d51: Pull complete
+bfde2ec33fbc: Pull complete
+55fab5cadd3c: Pull complete
+6041b69671c6: Pull complete
+Digest: sha256:608bba799613b1ebf754034ae008849ba51e88b23271412427b76d60ae0d0627
+Status: Downloaded newer image for node:15.14
+docker.io/library/node:15.14
+
+Запустите контейнер node в интерактивном режиме подключения терминала, поименуйте его mynode, передайте две переменные среды NAME=<ваше имя> и SURNAME=<ваша фамилия>
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -it --name mynode node
+Unable to find image 'node:latest' locally
+latest: Pulling from library/node
+c49aeeef8b10: Pull complete
+e23f099911d6: Pull complete
+22f110e2831e: Pull complete
+37927ed901b1: Pull complete
+3e6b9d1a9511: Pull complete
+79b2f47ad444: Pull complete
+cda7f44f2bdd: Pull complete
+4660af32d589: Pull complete
+Digest: sha256:e6b37209d8b1006af8ae905242b5616297966bacd3d819281e957fcb425f8fad
+Status: Downloaded newer image for node:latest
+Welcome to Node.js v24.0.2.
+Type ".help" for more information
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker container run --env NAME=ОЛЕГ --env SURNAME=Гречишников
+docker: 'docker container run' requires at least 1 argument
+
+Usage:  docker container run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+See 'docker container run --help' for more information
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> 
