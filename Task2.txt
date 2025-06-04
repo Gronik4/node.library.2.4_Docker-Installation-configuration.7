@@ -15,31 +15,26 @@ Status: Downloaded newer image for node:15.14
 docker.io/library/node:15.14
 
 Запустите контейнер node в интерактивном режиме подключения терминала, поименуйте его mynode, передайте две переменные среды NAME=<ваше имя> и SURNAME=<ваша фамилия>
-S D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>  docker run -it --name mynode node -e NAME=Oleg SURNAME=Grechishnikov                                            
-Unable to find image 'node:latest' locally                                  
-latest: Pulling from library/node
-52b7ac13fc22: Pull complete
-45b194cca635: Pull complete
-37927ed901b1: Pull complete
-2d83ef83188b: Pull complete
-db907a11de46: Pull complete
-e23f099911d6: Pull complete
-79b2f47ad444: Pull complete
-3e6b9d1a9511: Pull complete
-Digest: sha256:c332080545f1de96deb1c407e6fbe9a7bc2be3645e127845fdcce57a7af3cf56
-Status: Downloaded newer image for node:latest
-[eval]:1
-NAME=Oleg
-^
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -it --name mynode -e NAME=Олег -e SURNAME=Гречишников node:15.14
+Welcome to Node.js v15.14.0.
+Type ".help" for more information.
+>
+В интерактивной среде выполнения node выполните скрипт, который выведет на экран приветсвтие: Привет, <ваше имя> <ваша фамилия>!,
+  эти данные должны быть получены из переменных среды
+>console.log(`Привет ${process.env.NAME} ${process.env.SURNAME}!!`)
+Привет Олег Гречишников!!
+undefined
+>
+Остановите контейнер
+(Здесь я жамкал Ctrl+C, чтобы выйти из контейнера)
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker stop mynode
+mynode
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
 
-ReferenceError: Oleg is not defined
-    at [eval]:1:1
-    at runScriptInThisContext (node:internal/vm:218:10)
-    at node:internal/process/execution:456:12
-    at [eval]-wrapper:6:24
-    at runScriptInContext (node:internal/process/execution:454:60)
-    at evalFunction (node:internal/process/execution:286:30)
-    at evalTypeScript (node:internal/process/execution:298:3)
-    at node:internal/main/eval_string:71:3
-
-Node.js v24.1.0
+Удалите образ node версии 15.14
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>docker rmi 608bba799613
+Untagged: busybox:latest
+Deleted: sha256:608bba7996134c551b1b5582e27747b855bbfaa73fa11914fe0df028dc581f
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker images -a       
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>docker
