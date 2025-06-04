@@ -1,3 +1,4 @@
+                                Файл с результатами задания №2
 Загрузите образ node версии 15.14
 PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker pull node:15.14
 15.14: Pulling from library/node

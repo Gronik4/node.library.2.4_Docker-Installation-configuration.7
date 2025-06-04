@@ -1,3 +1,4 @@
+                     Файл с результатами задания №1
 Загрузите образ busybox последней версии
 PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker pull busybox:latest
 latest: Pulling from library/busybox
