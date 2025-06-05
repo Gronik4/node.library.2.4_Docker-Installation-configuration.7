@@ -30,4 +30,10 @@ PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configurati
 d375218f2ff2
 PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it d375218f2ff2 bash                                        
 Error response from daemon: container d375218f2ff227a6fc5f94b2fd7c17a532ea58cd45c8e5dedea7ff4230918a88 is not running
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> 
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker ps -a
+CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS                      PORTS     NAMES
+79fcc1fa664c   node:15.14   "docker-entrypoint.s…"   26 minutes ago   Exited (0) 18 minutes ago             second_node
+d375218f2ff2   node:15.14   "docker-entrypoint.s…"   27 minutes ago   Exited (0) 12 minutes ago             first_node
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
