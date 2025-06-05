@@ -1,0 +1,33 @@
+                             Файл с результатами задания №3
+Загрузите образ node версии 15.14
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker pull node:15.14
+15.14: Pulling from library/node
+4b57d41e8391: Pull complete
+dc05be471d51: Pull complete
+bd821d20ef8c: Pull complete
+6041b69671c6: Pull complete
+bfde2ec33fbc: Pull complete
+787f5e2f1047: Pull complete
+7b6173a10eb8: Pull complete
+55fab5cadd3c: Pull complete
+989c5d2d2313: Pull complete 
+Digest: sha256:608bba799613b1ebf754034ae008849ba51e88b23271412427b76d60ae0d0627
+Status: Downloaded newer image for node:15.14
+docker.io/library/node:15.14
+
+Запустите контейнер с именем first_node из образа node версии 15.14 в фоновом режиме, подключив папку data из текущей директории в /var/first/data контейнера
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -d --name first_node -v $PWD/data:/var/first/data node:15.14
+d375218f2ff227a6fc5f94b2fd7c17a532ea58cd45c8e5dedea7ff4230918a88
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> 
+
+Запустите контейнер с именем second_node из образа node версии 15.14 в фоновом режиме, подключив папку data из текущей директории в /var/second/data контейнера
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -d --name second_node -v $PWD/data:/var/second/data node:15.14
+79fcc1fa664c2387ac5dc91141a3afebf8cc79b593a46338c865544137a8b48b
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>  
+
+Подключитесь к контейнеру first_node с помощью exec
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker start d375218f2ff2
+d375218f2ff2
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it d375218f2ff2 bash                                        
+Error response from daemon: container d375218f2ff227a6fc5f94b2fd7c17a532ea58cd45c8e5dedea7ff4230918a88 is not running
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> 
