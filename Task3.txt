@@ -16,24 +16,63 @@ Status: Downloaded newer image for node:15.14
 docker.io/library/node:15.14
 
 Запустите контейнер с именем first_node из образа node версии 15.14 в фоновом режиме, подключив папку data из текущей директории в /var/first/data контейнера
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -d --name first_node -v $PWD/data:/var/first/data node:15.14
-d375218f2ff227a6fc5f94b2fd7c17a532ea58cd45c8e5dedea7ff4230918a88
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> 
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -dit --name first_node -v $PWD/data:/var/first/data node:15.14 sleep infinity
+2fcf5807a468b2206040cd865110a64b3af6bc89a2d936628ecb3074acb7eee2
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
 
 Запустите контейнер с именем second_node из образа node версии 15.14 в фоновом режиме, подключив папку data из текущей директории в /var/second/data контейнера
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -d --name second_node -v $PWD/data:/var/second/data node:15.14
-79fcc1fa664c2387ac5dc91141a3afebf8cc79b593a46338c865544137a8b48b
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>  
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker run -dit --name second_node -v $PWD/data:/var/first/data node:15.14 sleep infinity
+ecddc594db2633df8ec046d734fca1b5c7fe08885684ee4bc033e385d67e0235
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
 
-Подключитесь к контейнеру first_node с помощью exec
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker start d375218f2ff2
-d375218f2ff2
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it d375218f2ff2 bash                                        
-Error response from daemon: container d375218f2ff227a6fc5f94b2fd7c17a532ea58cd45c8e5dedea7ff4230918a88 is not running
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker ps
-CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
-PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker ps -a
-CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS                      PORTS     NAMES
-79fcc1fa664c   node:15.14   "docker-entrypoint.s…"   26 minutes ago   Exited (0) 18 minutes ago             second_node
-d375218f2ff2   node:15.14   "docker-entrypoint.s…"   27 minutes ago   Exited (0) 12 minutes ago             first_node
+Подключитесь к контейнеру first_node с помощью exec и создайте текстовый файл любого содержания в /var/first/data
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it first_node sh -c "echo 'Привет докер!!' > /var/first/data/file1.txt"
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> 
+
+Подключитесь к контейнеру second_node с помощью exec и получите список файлов в директории /var/second/data
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it second_node ls var/first/data
+file1.txt  file2.txt
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
+
+Выведете на экран содержимое файлов
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it second_node cat var/first/data/file1.txt
+Привет докер!!
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
+
+А вот содержимое втрого файла, созданного вручную не показывается....
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it second_node cat var/first/data/file1.txt cat var/first/data/text.txt 
+Привет докер!!
+cat: cat: No such file or directory
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
+
+А если файл создан командой докера - то все видно и так:
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it second_node cat var/first/data/text1.txt
+Hello Docker!!
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
+
+И так: 
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker exec -it second_node cat var/first/data/file1.txt cat var/first/data/text1.txt
+Привет докер!!
+cat: cat: No such file or directory
+Hello Docker!!
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
+
+Остановите оба контейнера
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker stop first_node second_node
+first_node
+second_node
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
+
+Удалите оба контейнера
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker rm first_node second_node  
+first_node
+second_node
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> 
+
+Удалите образ node версии 15.14
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker rmi 608bba799613
+Untagged: node:15.14
+Deleted: sha256:608bba799613b1ebf754034ae008849ba51e88b23271412427b76d60ae0d0627
+PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7> docker images -a
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 PS D:\Desctop\Education\Node\HW\node.library.2.4_Docker-Installation-configuration.7>
